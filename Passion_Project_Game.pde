@@ -18,8 +18,8 @@ game for practice
 PImage image;
 // data type for position
 PVector pos;
+PVector posEllipse;
 //code for image
-//PVector posEllipse;
 void setup() {
   size(1200, 700);
   image = loadImage("GokuImages.png");
@@ -27,26 +27,39 @@ void setup() {
   //Pvector
   // position of the image 
   pos=new PVector(width/2, height/2);
-// posEllipse= new PVector((width/2)+500,height/2);
+  
+ posEllipse= new PVector((width/2),height/2);
 }
 void draw() {
   background(49, 90, 150, 175);
   //for the position of image
-  ellipse (pos.x,pos.y, 30,30);
+  ellipse (posEllipse.x,posEllipse.y, 60,60);
   //the shooting ellipse
   image(image, pos.x, pos.y);
+  //for the ellipse 
+  if ( keyCode == ENTER ) {
+   posEllipse.x -=3;
+  }
+  if(posEllipse.x < 0){
+  posEllipse.x = pos.x;
+  }
 }
 void keyPressed() {
-  if (keyPressed & keyCode == UP) {
+  if ( keyCode == UP) {
     pos.y -= 3;
+    posEllipse.y -=3;
   }
-  if (keyPressed & keyCode == DOWN) {
+  if (keyCode == DOWN) {
     pos.y += 3;
+    posEllipse.y +=3;
   }
-  if (keyPressed & keyCode == RIGHT) {
+  if (keyCode == RIGHT) {
     pos.x += 3;
+    posEllipse.x+=3;
   }
-  if (keyPressed & keyCode == LEFT) {
+  if (keyCode == LEFT) {
     pos.x -= 3;
+    posEllipse.x-=3;
   }
+  
 }
